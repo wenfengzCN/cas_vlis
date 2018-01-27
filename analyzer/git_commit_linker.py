@@ -76,6 +76,10 @@ class GitCommitLinker:
     bug_introducing_changes = self.gitAnnotate(region_chunks, commit)
     return bug_introducing_changes
 
+  def StoreLineInfo(self):
+    # to load line information to add.csv del.csv
+    pass
+
   def _getModifiedRegionsOnly(self, diff, files_modified):
     """
     returns a dict of file -> list of line numbers modified. helper function for getModifiedRegions
@@ -152,6 +156,9 @@ class GitCommitLinker:
         mod_line_info = line_info.split(" ")[1] # remove clutter -> we only care about what line the modificatin started, first index is just empty
         mod_code_info = code_info.replace("\\n","").split(":CAS_DELIMITER:")[1:-1] # remove clutter -> first line contains info on the class and last line irrelevant
 
+        # write a function to load line information to a certain file add.csv and del.csv
+
+
         # make sure this is legitimate. expect modified line info to start with '-'
         if mod_line_info[0] != '-':
           continue
@@ -208,6 +215,18 @@ class GitCommitLinker:
       # The code change did not have a parent change!
       return {}
 
+    # store bug lines to database
+  def storeBuggyLines(self, commit_hash, file, lines):
+    store_string = 'FILE_START:' + file + ',' + ','.join(lines)
+    session = Session()
+    commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).one()
+    lines_exist = commit.buggy_lines
+    if lines_exist == 'NULL':
+       commit.buggy_lines = store_string
+    else:
+      commit.buggy_lines = lines_exist + store_string
+    session.commit()
+
   def gitAnnotate(self, regions, commit):
     """
     tracks down the origin of the deleted/modified loc in the regions dict using
@@ -224,6 +243,7 @@ class GitCommitLinker:
     bug_introducing_changes = []
 
     for file, lines in regions.items():
+      bug_introducing_lines = {}  # to store bug_introducing_changes and lines in a certain file
       for line in lines:
 
         # assume if region starts at beginning its a deletion or rename and ignore
@@ -236,5 +256,14 @@ class GitCommitLinker:
 
           if buggy_change not in bug_introducing_changes:
             bug_introducing_changes.append(buggy_change)
+          if not bug_introducing_lines.get(buggy_change): # not exist before
+            bug_introducing_lines[buggy_change] = []
+            bug_introducing_lines[buggy_change].append(str(line))
+          else:
+            bug_introducing_lines[buggy_change].append(str(line))
+            # store bug_introducing_lines to commit talbe in database
+      for buggy_change in bug_introducing_changes:
+            # check empty
+        self.storeBuggyLines(buggy_change, file, bug_introducing_lines[buggy_change])
 
     return bug_introducing_changes

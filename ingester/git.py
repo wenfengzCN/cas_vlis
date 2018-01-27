@@ -46,6 +46,8 @@ class Git():
     PULL_CMD = 'git pull'      # git pull command
     RESET_CMD = 'git reset --hard FETCH_HEAD'
     CLEAN_CMD = 'git clean -df' # f for force clean, d for untracked directories
+    DIFF_CMD = "git diff {0}^ {1} --unified=0 "
+    DIFF_CMD_NAME = "git diff {0}^ {1} --name-only"
 
     REPO_DIRECTORY = "/CASRepos/git/"        # directory in which to store repositories
     DIFF_DIRECTORY = "/CASRepos/diff/"       # directory in which to store diff information
@@ -102,7 +104,6 @@ class Git():
              # Check that we are only looking at file stat (i.e., remove extra newlines)
             if( len(fileStat) < 2):
                 continue
-
             # catch the git "-" line changes
             try:
                 fileLa = int(fileStat[0])
@@ -248,100 +249,139 @@ class Git():
         else:
             return False
 
-    def parsingDiff(self, file_name, commit):
-        with open(file_name , 'r', encoding='utf-8',) as file:
-            log = file.read()
-            temp = log.split("diff --git ")
-            if len(temp) < 2: # ignore commits without diff information like merge commit
-                return []
-            diffList = temp[1:]
-            add_results = []
-            del_results = []
-            resuluts_header = ['commit_hash','content','file_pre','file_new','line_num','author','time','bug_label']
-            # file to store results
-            add_file = os.path.dirname(__file__)+ self.DIFF_DIRECTORY + commit.repository_id + '/' + commit.repository_id + '_add.csv'
-            del_file = os.path.dirname(__file__)+ self.DIFF_DIRECTORY + commit.repository_id + '/' + commit.repository_id +'_del.csv'
-            for diff in diffList:
-                chunkList = diff.split('@@ -')
-                # get the previous file name and new file name
-                file_pre = re.search('\-{3} (a/)?(.*)', chunkList[0])
-                if hasattr(file_pre, 'group'):
-                    file_pre = file_pre.group(2)
+    def getBuggyLines(self,commit):
+        bug = {}
+        if commit.buggy_lines == 'NULL':
+            return bug
+        buggy_files = commit.buggy_lines.split('FILE_START:')[1:]
+
+        for buggy_file in buggy_files:
+            info = buggy_file.split(',')
+            file_name = info[0]
+            lines = info[1:]
+            bug[file_name] = lines
+        return bug
+
+    def getBugLabel(self, file, line_num,buggy_lines):
+        lines = buggy_lines.get(file,[])
+        if lines:
+            if str(line_num) in lines:
+                return True
+            else:
+                return False
+        else:
+            return False
+
+
+    def parsingDiff(self, diff_info, commit):
+        region_diff = {}
+        # only link code source files as any type of README, etc typically have HUGE changes and reduces
+        # the performance to unacceptable levels. it's very hard to blacklist everything; much easier just to whitelist
+        # code source files endings.
+        list_ext_dir = os.path.join(os.path.dirname(__file__), "code_file_extentions.txt")
+        file_exts_to_include = open(list_ext_dir).read().splitlines()
+        regions = diff_info.split('diff --git ')
+        if len(regions) < 2:
+            return [] # ignore commits without diff information like merge commit
+
+        add_results = []
+        del_results = []
+        resuluts_header = ['commit_hash', 'content', 'file_pre', 'file_new', 'line_num', 'author', 'time', 'bug_label']
+        # file to store results
+        add_file = os.path.dirname(
+            __file__) + self.DIFF_DIRECTORY + commit.repository_id + '/' + commit.repository_id + '_add.csv'
+        del_file = os.path.dirname(
+            __file__) + self.DIFF_DIRECTORY + commit.repository_id + '/' + commit.repository_id + '_del.csv'
+        buggy_lines = self.getBuggyLines(commit)
+
+        for region in regions[1:]:
+            chunks = region.split('@@ -')
+            # get the previous file name and new file name
+            file_pre = re.search('\-{3} (a/)?(.*)', chunks[0])
+
+            if hasattr(file_pre, 'group'):
+                file_pre = file_pre.group(2)
+            else:
+                continue
+            file_new = re.search('\+{3} (b)/?(.*)', chunks[0])
+
+            if hasattr(file_new, 'group'):
+                file_new = file_new.group(2)
+            else:
+                continue
+
+            # only focus on ".java" file
+            file_info = file_new.split(".")
+
+            # get extentions
+            if len(file_info) > 1:
+                file_ext = (file_info[1]).lower()
+                # ensure these source code file endings
+                if file_ext.upper() not in file_exts_to_include:
+                    continue
+            else:
+                continue
+
+            for chunk in chunks[1:]:
+                lines = chunk.split('\n')
+                # get the line number of each change
+                nums = re.match(r'^(\d+),\d+ \+(\d+),\d+ @@', lines[0])
+                if hasattr(nums, 'group'):
+                    pre_current = int(nums.group(1))
+                    new_current = int(nums.group(2))
                 else:
                     continue
-                file_new = re.search('\+{3} (b)/?(.*)', chunkList[0])
-                if hasattr(file_new, 'group'):
-                    file_new = file_new.group(2)
-                else:
-                    continue
-                # only focus on ".java" file
-                if not file_new.endswith(".java"):
-                    continue
-                for chunk in chunkList[1:]:
-                    lines = chunk.split('\n')
-                    # get the line number of each change
-                    nums = re.match(r'^(\d+),\d+ \+(\d+),\d+ @@', lines[0])
-                    if hasattr(nums,'group'):
-                        pre_start = int(nums.group(1))
-                        new_start = int(nums.group(2))
-                    else:
-                        continue
+                for line in lines[1:]:
+                    is_add = line.startswith('+')  # this line add some code(missing in previous file but added to new file)
+                    is_del = line.startswith('-')  # this line delete some code(appears in previous file but removed in new file)
+                    if is_add:
+                        line_num = new_current
+                        new_current += 1
+                        line = line.lstrip('+').strip().strip('\t').strip('\r')
+                        # this line is a comment or not
+                        is_comment = self.isComment(line)
+                        if not is_comment:
+                            if len(line) < self.LEAST_CHARACTER:
+                                continue  # escape those line without enought information
+                            bug_label = self.getBugLabel()
+                            result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
+                                      commit.author_date, bug_label)
+                            # bug all contain_bug became False
+                            add_results.append(result)
 
-                    pre_add = 0  # (pre_start + pre_add): the line number of this line in previous file
-                    new_add = 0  # (new_start + new_add): the line number of this line in new file
-
-                    for line in lines[1:]:
-                        is_add = line.startswith('+')  # this line add some code(missing in previous file but added to new file)
-                        is_del = line.startswith('-')  # this line delete some code(appears in previous file but removed in new file)
-                        if is_add:
-                            line_num = new_start + new_add
-                            new_add += 1
-                            line = line.lstrip('+').strip().strip('\t').strip('\r')
-                            # this line is a comment or not
-                            is_comment = self.isComment(line)
-                            if not is_comment:
-                                if len(line) < self.LEAST_CHARACTER:
-                                    continue # escape those line without enought information
-                                result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
-                                          commit.author_date, commit.contains_bug)
-                               # bug all contain_bug became False 
-                                add_results.append(result)
-
-                            else:
-                                continue
-                        elif is_del:
-                            line_num = pre_start + pre_add
-                            pre_add += 1
-                            line = line.lstrip('-').strip().strip('\t').strip('\r') # remove some useless characters
-                            is_comment = self.isComment(line)
-                            if not is_comment:
-                                if len(line) < self.LEAST_CHARACTER:
-                                    continue # ignore blank lines
-                                result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
-                                          commit.author_date, commit.fix)
-                                del_results.append(result)
-                            else:
-                                continue
                         else:
-                            # unchanged(appears in both previous and new file)
-                            new_add += 1
-                            pre_add += 1
                             continue
-            add_exist = os.path.isfile(add_file) # avoid write file header towice
-            with open(add_file, 'a') as file:
-                f_csv = csv.writer(file)
-                if not add_exist:
-                    f_csv.writerow(resuluts_header)
-                f_csv.writerows(add_results)
-            del_exist = os.path.isfile(del_file)
-            with open(del_file, 'a') as file:
-                f_csv = csv.writer(file)
-                if not del_exist:
-                    f_csv.writerow(resuluts_header)
-                f_csv.writerows(del_results)
+                    elif is_del:
+                        line_num = pre_current
+                        pre_current += 1
+                        line = line.lstrip('-').strip().strip('\t').strip('\r')  # remove some useless characters
+                        is_comment = self.isComment(line)
+                        if not is_comment:
+                            if len(line) < self.LEAST_CHARACTER:
+                                continue  # ignore blank lines
+                            result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
+                                      commit.author_date, commit.fix)
+                            del_results.append(result)
+                        else:
+                            continue
+        add_exist = os.path.isfile(add_file)  # avoid write file header towice
+        with open(add_file, 'a') as file:
+            f_csv = csv.writer(file)
+            if not add_exist:
+                f_csv.writerow(resuluts_header)
+            f_csv.writerows(add_results)
+        del_exist = os.path.isfile(del_file)
+        with open(del_file, 'a') as file:
+            f_csv = csv.writer(file)
+            if not del_exist:
+                f_csv.writerow(resuluts_header)
+            f_csv.writerows(del_results)
+
+
+
+
 
     def diff(self,repoId):
-        cmd = 'git log -p -1 '
         repo_dir = os.chdir(os.path.dirname(__file__) + self.REPO_DIRECTORY + repoId)
         diff_dir = os.path.dirname(__file__)+ self.DIFF_DIRECTORY + repoId
 
@@ -358,15 +398,16 @@ class Git():
         # diff
         logging.info('Starting get/parsing diff information.')
         for commit in commits:
-            diff = (subprocess.check_output(cmd + commit.commit_hash, shell=True, cwd=repo_dir)).decode('utf-8','replace')
-            file_name = diff_dir + '/'+commit.commit_hash
-            with open(file_name, "w") as f:
-                f.write(diff)
-            self.parsingDiff(file_name, commit)
-            commit.diffed = True
-            session.commit() # update diffed
+            try:
+                diff_info = (subprocess.check_output(self.DIFF_CMD.format(commit.commit_hash, commit.commit_hash),\
+                                                 shell=True, cwd=repo_dir)).decode('utf-8','replace')
+
+                self.parsingDiff(diff_info,  commit)
+                commit.diffed = True
+                session.commit() # update diffed
+            except:
+                continue
         logging.info('Done getting/parsing diff informations.')
-        logging.info('Starting parsing diff informations.')
 
     def log(self, repo, firstSync):
         """

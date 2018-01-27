@@ -24,7 +24,7 @@ class Commit(Base):
     fix = Column(String, unique=False)
     classification = Column(String, unique=False)
     linked = Column(Boolean, default = False)
-    # whether this commit has be diffed before or not
+    # whether this commit has be diffed before or not, when certain commit is marked as contains_bug, diffed should be reseted to False again
     diffed = Column(BOOLEAN,default=False)
 
     contains_bug = Column(Boolean, unique=False, default=False)
@@ -36,6 +36,7 @@ class Commit(Base):
     la = Column(Float, unique=False, default=0)
     ld = Column(Float, unique=False, default=0)
     fileschanged = Column(String, unique=False, default="NULL")
+    buggy_lines = Column(String,unique=False, default='NULL') # bug_introducing lines, distinguish from lineschanged
     lt = Column(Float, unique=False, default=0)
     ndev = Column(Float, unique=False, default=0)
     age = Column(Float, unique=False, default=0)
