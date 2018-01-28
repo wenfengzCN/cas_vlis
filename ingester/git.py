@@ -48,6 +48,7 @@ class Git():
     CLEAN_CMD = 'git clean -df' # f for force clean, d for untracked directories
     DIFF_CMD = "git diff {0}^ {1} --unified=0 "
     DIFF_CMD_NAME = "git diff {0}^ {1} --name-only"
+    DIFF_CMD_INIT = "git diff {0} --unified=0"
 
     REPO_DIRECTORY = "/CASRepos/git/"        # directory in which to store repositories
     DIFF_DIRECTORY = "/CASRepos/diff/"       # directory in which to store diff information
@@ -278,8 +279,11 @@ class Git():
         # only link code source files as any type of README, etc typically have HUGE changes and reduces
         # the performance to unacceptable levels. it's very hard to blacklist everything; much easier just to whitelist
         # code source files endings.
-        list_ext_dir = os.path.join(os.path.dirname(__file__), "code_file_extentions.txt")
-        file_exts_to_include = open(list_ext_dir).read().splitlines()
+
+        list_ext_dir = os.path.dirname(__file__)+  "/../analyzer/code_file_extentions.txt"
+        with open(list_ext_dir,'r') as file:
+            file_exts_to_include = file.read().splitlines()
+
         regions = diff_info.split('diff --git ')
         if len(regions) < 2:
             return [] # ignore commits without diff information like merge commit
@@ -343,7 +347,7 @@ class Git():
                         if not is_comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
-                            bug_label = self.getBugLabel()
+                            bug_label = self.getBugLabel(file_new,new_current,buggy_lines)
                             result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
                                       commit.author_date, bug_label)
                             # bug all contain_bug became False
@@ -397,7 +401,7 @@ class Git():
                    .order_by( Commit.author_date_unix_timestamp.desc()).all())
         # diff
         logging.info('Starting get/parsing diff information.')
-        for commit in commits:
+        for commit in commits[:-1]:
             try:
                 diff_info = (subprocess.check_output(self.DIFF_CMD.format(commit.commit_hash, commit.commit_hash),\
                                                  shell=True, cwd=repo_dir)).decode('utf-8','replace')
@@ -407,7 +411,19 @@ class Git():
                 session.commit() # update diffed
             except:
                 continue
-        logging.info('Done getting/parsing diff informations.')
+        # the initial commit
+        try:
+            diff_info = (subprocess.check_output(self.DIFF_CMD_INIT.format(commit.commit_hash), \
+                                                 shell=True, cwd=repo_dir)).decode('utf-8', 'replace')
+
+            self.parsingDiff(diff_info, commit)
+            commit.diffed = True
+            session.commit()  # update diffed
+        except Exception as e:
+            logging.info(e)
+        finally:
+            session.close()
+            logging.info('Done getting/parsing diff informations.')
 
     def log(self, repo, firstSync):
         """

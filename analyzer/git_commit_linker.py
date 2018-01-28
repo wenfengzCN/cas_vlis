@@ -216,16 +216,17 @@ class GitCommitLinker:
       return {}
 
     # store bug lines to database
-  def storeBuggyLines(self, commit_hash, file, lines):
-    store_string = 'FILE_START:' + file + ',' + ','.join(lines)
-    session = Session()
-    commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).one()
-    lines_exist = commit.buggy_lines
-    if lines_exist == 'NULL':
-       commit.buggy_lines = store_string
-    else:
-      commit.buggy_lines = lines_exist + store_string
-    session.commit()
+  def storeBuggyLines(self, file, buggy_lines):
+    for commit_hash, lines in buggy_lines.items():
+      store_string = 'FILE_START:' + file + ',' + ','.join(lines)
+      session = Session()
+      commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).one()
+      lines_exist = commit.buggy_lines
+      if lines_exist == 'NULL':
+         commit.buggy_lines = store_string
+      else:
+        commit.buggy_lines = lines_exist + store_string
+      session.commit()
 
   def gitAnnotate(self, regions, commit):
     """
@@ -251,19 +252,26 @@ class GitCommitLinker:
 
           # we need to git blame with the --follow option so that it follows renames in the file, and the '-l'
           # option gives us the complete commit hash. additionally, start looking at the commit's ancestor 
-          buggy_change = str( subprocess.check_output( "git blame -L" + line + ",+1 " + commit.commit_hash + "^ -l -- '" \
-                            + file + "'", shell=True, cwd= self.repo_path )).split(" ")[0][2:]
+          result = str( subprocess.check_output( "git blame --show-number -L" + line + ",+1 " + commit.commit_hash + "^ -l -- '" \
+                            + file + "'", shell=True, cwd= self.repo_path )).split(" ")
+          buggy_change = result[0][2:] # commit_hash
+          original_line = result[1] # the original linenumber
 
           if buggy_change not in bug_introducing_changes:
             bug_introducing_changes.append(buggy_change)
           if not bug_introducing_lines.get(buggy_change): # not exist before
             bug_introducing_lines[buggy_change] = []
-            bug_introducing_lines[buggy_change].append(str(line))
+            bug_introducing_lines[buggy_change].append(original_line)
           else:
-            bug_introducing_lines[buggy_change].append(str(line))
+            bug_introducing_lines[buggy_change].append(original_line)
             # store bug_introducing_lines to commit talbe in database
-      for buggy_change in bug_introducing_changes:
-            # check empty
-        self.storeBuggyLines(buggy_change, file, bug_introducing_lines[buggy_change])
-
+      if bug_introducing_lines != {}:
+        self.storeBuggyLines(file,bug_introducing_lines)
+    # update commit.diffed; because new bug is finded and the bug_introducing commit should update it's add line information
+    session = Session()
+    for commit_hash in bug_introducing_changes:
+      commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).one()
+      commit.diffed = False
+      session.commit()
+    session.close()
     return bug_introducing_changes

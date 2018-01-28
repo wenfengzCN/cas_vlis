@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da86a242-f1f6-4085-8632-3d18c52ff179" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/analyzer/git_commit_linker.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzer/code_file_extentions.txt" afterPath="$PROJECT_DIR$/analyzer/code_file_extentions.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzer/git_commit_linker.py" afterPath="$PROJECT_DIR$/analyzer/git_commit_linker.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ingester/git.py" afterPath="$PROJECT_DIR$/ingester/git.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orm/commit.py" afterPath="$PROJECT_DIR$/orm/commit.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,18 +18,8 @@
       <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
+            <state relative-caret-position="306">
               <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="metrics.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orm/metrics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -40,18 +28,18 @@
       <file leaf-file-name="commit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orm/commit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
+            <state relative-caret-position="594">
               <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="git.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="git.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ingester/git.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="383" column="26" lean-forward="false" selection-start-line="383" selection-start-column="26" selection-end-line="383" selection-end-column="26" />
+            <state relative-caret-position="6372">
+              <caret line="354" column="0" lean-forward="false" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -59,14 +47,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="git_commit_linker.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="git_commit_linker.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="196" column="4" lean-forward="false" selection-start-line="196" selection-start-column="4" selection-end-line="196" selection-end-column="4" />
+            <state relative-caret-position="631">
+              <caret line="274" column="22" lean-forward="true" selection-start-line="274" selection-start-column="22" selection-end-line="274" selection-end-column="22" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/orm/session.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15912">
+              <caret line="901" column="66" lean-forward="false" selection-start-line="901" selection-start-column="66" selection-end-line="901" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cas_manager.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cas_manager.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,8 +82,8 @@
       <file leaf-file-name="analyzer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyzer/analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="96" column="8" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+            <state relative-caret-position="1332">
+              <caret line="86" column="43" lean-forward="false" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -84,8 +92,8 @@
       <file leaf-file-name="operators.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/sql/operators.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="585" column="8" lean-forward="false" selection-start-line="585" selection-start-column="8" selection-end-line="585" selection-end-column="8" />
+            <state relative-caret-position="10602">
+              <caret line="594" column="0" lean-forward="false" selection-start-line="594" selection-start-column="0" selection-end-line="594" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,8 +102,8 @@
       <file leaf-file-name="CASLog.log" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CASLog.log">
           <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="899">
-              <caret line="166728" column="58" lean-forward="false" selection-start-line="166728" selection-start-column="58" selection-end-line="166728" selection-end-column="58" />
+            <state relative-caret-position="136926">
+              <caret line="7607" column="58" lean-forward="false" selection-start-line="7607" selection-start-column="58" selection-end-line="7607" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -114,10 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>open(</find>
-      <find>subprocess</find>
-      <find>merge</find>
-      <find>bce31805e9b4b1360d50be8e001886d58e087e38</find>
       <find>file_new</find>
       <find>pull</find>
       <find>bugfinder</find>
@@ -142,8 +146,12 @@
       <find>linkCorrectiveCommits</find>
       <find>getModifiedRegions</find>
       <find>git diff</find>
+      <find>session.close()</find>
       <find>CLONE_CMD</find>
+      <find>raise</find>
+      <find>REPO</find>
       <find>DIFF_CMD</find>
+      <find>code_file</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,7 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CASLog.log" />
         <option value="$PROJECT_DIR$/analyzer/metricsgenerator.py" />
         <option value="$PROJECT_DIR$/analyzer/linear_reg_model.py" />
         <option value="$PROJECT_DIR$/ingester/ingester.py" />
@@ -162,9 +169,10 @@
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/orm/commit.py" />
         <option value="$PROJECT_DIR$/analyzer/code_file_extentions.txt" />
-        <option value="$PROJECT_DIR$/analyzer/git_commit_linker.py" />
         <option value="$PROJECT_DIR$/analyzer/analyzer.py" />
         <option value="$PROJECT_DIR$/ingester/git.py" />
+        <option value="$PROJECT_DIR$/CASLog.log" />
+        <option value="$PROJECT_DIR$/analyzer/git_commit_linker.py" />
       </list>
     </option>
   </component>
@@ -228,7 +236,7 @@
               <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
               <item name="ingester" type="462c0819:PsiDirectoryNode" />
               <item name="CASRepos" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
+              <item name="diff" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
@@ -422,24 +430,24 @@
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15337424" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1574642" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -461,8 +469,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110e/d6b9e548eff15c3d0e56892f7b2fbf2c25c5c69d" />
-    <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110e/c2c6c8b66f22d980bd780a4d4031d5232d598b83" />
     <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110e/be92cbcf082e7cb36881be642e9651247f186036" />
     <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110f/aea02838e391bfda8b25107946d1eaa2a01b80c1" />
     <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110f/b8e0e82c124f388f2540c54436abcd40ce1b9abd" />
@@ -524,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -539,7 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -567,34 +571,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyzer/code_file_extentions.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/sql/operators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="585" column="8" lean-forward="false" selection-start-line="585" selection-start-column="8" selection-end-line="585" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CASLog.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="899">
-          <caret line="166728" column="58" lean-forward="false" selection-start-line="166728" selection-start-column="58" selection-end-line="166728" selection-end-column="58" />
+        <state relative-caret-position="136926">
+          <caret line="7607" column="58" lean-forward="false" selection-start-line="7607" selection-start-column="58" selection-end-line="7607" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -602,40 +582,78 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cas_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orm/commit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
+        <state relative-caret-position="594">
           <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/orm/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15912">
+          <caret line="901" column="66" lean-forward="false" selection-start-line="901" selection-start-column="66" selection-end-line="901" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyzer/code_file_extentions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/sql/operators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10602">
+          <caret line="594" column="0" lean-forward="false" selection-start-line="594" selection-start-column="0" selection-end-line="594" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analyzer/analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="96" column="8" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+        <state relative-caret-position="1332">
+          <caret line="86" column="43" lean-forward="false" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker.py">
+    <entry file="file://$PROJECT_DIR$/ingester/git.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="196" column="4" lean-forward="false" selection-start-line="196" selection-start-column="4" selection-end-line="196" selection-end-column="4" />
+        <state relative-caret-position="6372">
+          <caret line="354" column="0" lean-forward="false" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ingester/git.py">
+    <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="383" column="26" lean-forward="false" selection-start-line="383" selection-start-column="26" selection-end-line="383" selection-end-column="26" />
+        <state relative-caret-position="631">
+          <caret line="274" column="22" lean-forward="true" selection-start-line="274" selection-start-column="22" selection-end-line="274" selection-end-column="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
