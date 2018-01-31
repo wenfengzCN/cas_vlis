@@ -220,7 +220,9 @@ class GitCommitLinker:
     for commit_hash, lines in buggy_lines.items():
       store_string = 'FILE_START:' + file + ',' + ','.join(lines)
       session = Session()
-      commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).one()
+      commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).first()
+      if commit == None:
+        continue
       lines_exist = commit.buggy_lines
       if lines_exist == 'NULL':
          commit.buggy_lines = store_string
@@ -270,7 +272,7 @@ class GitCommitLinker:
     # update commit.diffed; because new bug is finded and the bug_introducing commit should update it's add line information
     session = Session()
     for commit_hash in bug_introducing_changes:
-      commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).one()
+      commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).first()
       commit.diffed = False
       session.commit()
     session.close()

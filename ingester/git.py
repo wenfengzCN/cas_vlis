@@ -401,7 +401,7 @@ class Git():
                    .order_by( Commit.author_date_unix_timestamp.desc()).all())
         # diff
         logging.info('Starting get/parsing diff information.')
-        for commit in commits[:-1]:
+        for commit in commits:
             try:
                 diff_info = (subprocess.check_output(self.DIFF_CMD.format(commit.commit_hash, commit.commit_hash),\
                                                  shell=True, cwd=repo_dir)).decode('utf-8','replace')
@@ -410,20 +410,19 @@ class Git():
                 commit.diffed = True
                 session.commit() # update diffed
             except:
-                continue
-        # the initial commit
-        try:
-            diff_info = (subprocess.check_output(self.DIFF_CMD_INIT.format(commit.commit_hash), \
-                                                 shell=True, cwd=repo_dir)).decode('utf-8', 'replace')
+                try:
+                    diff_info = (subprocess.check_output(self.DIFF_CMD_INIT.format(commit.commit_hash), \
+                                                         shell=True, cwd=repo_dir)).decode('utf-8', 'replace')
 
-            self.parsingDiff(diff_info, commit)
-            commit.diffed = True
-            session.commit()  # update diffed
-        except Exception as e:
-            logging.info(e)
-        finally:
-            session.close()
-            logging.info('Done getting/parsing diff informations.')
+                    self.parsingDiff(diff_info, commit)
+                    commit.diffed = True
+                    session.commit()  # update diffed
+                except Exception as e:
+                    logging.info(e)
+                    continue
+        # the initial commit
+        session.close()
+        logging.info('Done getting/parsing diff informations.')
 
     def log(self, repo, firstSync):
         """
