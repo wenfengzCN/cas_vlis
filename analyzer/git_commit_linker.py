@@ -273,7 +273,10 @@ class GitCommitLinker:
     session = Session()
     for commit_hash in bug_introducing_changes:
       commit = session.query(Commit).filter(Commit.commit_hash==commit_hash).first()
+      if commit == None:
+        continue
       commit.diffed = False
-      session.commit()
+
+    session.commit()
     session.close()
     return bug_introducing_changes

@@ -408,7 +408,7 @@ class Git():
 
                 self.parsingDiff(diff_info,  commit)
                 commit.diffed = True
-                session.commit() # update diffed
+                #session.commit() # update diffed
             except:
                 try:
                     diff_info = (subprocess.check_output(self.DIFF_CMD_INIT.format(commit.commit_hash), \
@@ -416,11 +416,12 @@ class Git():
 
                     self.parsingDiff(diff_info, commit)
                     commit.diffed = True
-                    session.commit()  # update diffed
+                    #session.commit()  # update diffed
                 except Exception as e:
                     logging.info(e)
                     continue
         # the initial commit
+        session.commit()
         session.close()
         logging.info('Done getting/parsing diff informations.')
 
