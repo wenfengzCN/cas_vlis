@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da86a242-f1f6-4085-8632-3d18c52ff179" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzer/git_commit_linker.py" afterPath="$PROJECT_DIR$/analyzer/git_commit_linker.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ingester/git.py" afterPath="$PROJECT_DIR$/ingester/git.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/CAS_CodeRepoAnalyzer.iml" afterPath="$PROJECT_DIR$/.idea/CAS_CodeRepoAnalyzer.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/config.example.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/ingester/git.py" afterPath="$PROJECT_DIR$/ingester/git.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,18 +30,18 @@
       <file leaf-file-name="commit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orm/commit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+            <state relative-caret-position="562">
+              <caret line="38" column="15" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="git.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="git.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ingester/git.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="413" column="105" lean-forward="false" selection-start-line="413" selection-start-column="105" selection-end-line="413" selection-end-column="105" />
+            <state relative-caret-position="138">
+              <caret line="44" column="83" lean-forward="true" selection-start-line="44" selection-start-column="83" selection-end-line="44" selection-end-column="83" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -47,11 +49,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="git_commit_linker.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="taggingFile.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taggingFile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="git_commit_linker.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="647">
-              <caret line="279" column="4" lean-forward="false" selection-start-line="279" selection-start-column="4" selection-end-line="279" selection-end-column="4" />
+            <state relative-caret-position="508">
+              <caret line="270" column="20" lean-forward="false" selection-start-line="270" selection-start-column="13" selection-end-line="270" selection-end-column="20" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -73,7 +85,7 @@
         <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/orm/session.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15912">
-              <caret line="901" column="66" lean-forward="false" selection-start-line="901" selection-start-column="66" selection-end-line="901" selection-end-column="66" />
+              <caret line="901" column="0" lean-forward="false" selection-start-line="901" selection-start-column="0" selection-end-line="901" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -109,26 +121,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CASLog.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CASLog.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="136926">
-              <caret line="7607" column="58" lean-forward="false" selection-start-line="7607" selection-start-column="58" selection-end-line="7607" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Commit.c</find>
-      <find>contains_bug</find>
-      <find>linkC</find>
-      <find>git</find>
       <find>nt180114</find>
       <find>CASRepo</find>
-      <find>$PROJECT_DIR$/../../</find>
+      <find>$USER_HOME$/</find>
       <find>author_date_unix_timestamp</find>
       <find>loc modified:</find>
       <find>REPLY</find>
@@ -152,6 +151,10 @@
       <find>DIFF_CMD_NAME</find>
       <find>git diff</find>
       <find>getModifiedRegions</find>
+      <find>csv</find>
+      <find>add</find>
+      <find>storeBu</find>
+      <find>buggy_lines</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -171,8 +174,8 @@
         <option value="$PROJECT_DIR$/analyzer/code_file_extentions.txt" />
         <option value="$PROJECT_DIR$/analyzer/analyzer.py" />
         <option value="$PROJECT_DIR$/CASLog.log" />
-        <option value="$PROJECT_DIR$/ingester/git.py" />
         <option value="$PROJECT_DIR$/analyzer/git_commit_linker.py" />
+        <option value="$PROJECT_DIR$/ingester/git.py" />
       </list>
     </option>
   </component>
@@ -182,11 +185,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="430" />
-    <option name="y" value="116" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="95" />
+    <option name="y" value="235" />
     <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -210,36 +213,18 @@
         <subPane>
           <expand>
             <path>
-              <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="cas_vlis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cas_vlis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="cas_vlis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cas_vlis" type="462c0819:PsiDirectoryNode" />
               <item name="analyzer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="cas_vlis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cas_vlis" type="462c0819:PsiDirectoryNode" />
               <item name="ingester" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="ingester" type="462c0819:PsiDirectoryNode" />
-              <item name="CASRepos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="ingester" type="462c0819:PsiDirectoryNode" />
-              <item name="CASRepos" type="462c0819:PsiDirectoryNode" />
-              <item name="diff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CAS_CodeRepoAnalyzer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAS_CodeRepoAnalyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="orm" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -252,10 +237,11 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/ingester" />
     </key>
   </component>
@@ -417,6 +403,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="da86a242-f1f6-4085-8632-3d18c52ff179" name="Default" comment="" />
@@ -428,28 +417,32 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="95" y="235" width="1855" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1574642" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1670282" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +463,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110f/aea02838e391bfda8b25107946d1eaa2a01b80c1" />
     <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110f/b8e0e82c124f388f2540c54436abcd40ce1b9abd" />
     <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110f/c2c6c8b66f22d980bd780a4d4031d5232d598b83" />
     <entry file="file://$PROJECT_DIR$/ingester/CASRepos/diff/algorithms180110f/a11192282779c1a9f893c1b7db91e6196fb77956" />
@@ -554,26 +546,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/-1247971764/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="2789" column="8" lean-forward="false" selection-start-line="2789" selection-start-column="8" selection-end-line="2789" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/-1247971764/builtins.py" />
     <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker_backup.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
           <caret line="300" column="0" lean-forward="true" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CASLog.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="136926">
-          <caret line="7607" column="58" lean-forward="false" selection-start-line="7607" selection-start-column="58" selection-end-line="7607" selection-end-column="58" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -587,7 +572,7 @@
     <entry file="file:///usr/local/lib/python3.5/dist-packages/sqlalchemy/orm/session.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15912">
-          <caret line="901" column="66" lean-forward="false" selection-start-line="901" selection-start-column="66" selection-end-line="901" selection-end-column="66" />
+          <caret line="901" column="0" lean-forward="false" selection-start-line="901" selection-start-column="0" selection-end-line="901" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -623,14 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orm/commit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analyzer/linear_reg_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4194">
@@ -647,20 +624,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ingester/git.py">
+    <entry file="file://$PROJECT_DIR$/taggingFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="413" column="105" lean-forward="false" selection-start-line="413" selection-start-column="105" selection-end-line="413" selection-end-column="105" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="270" column="20" lean-forward="false" selection-start-line="270" selection-start-column="13" selection-end-line="270" selection-end-column="20" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyzer/git_commit_linker.py">
+    <entry file="file://$PROJECT_DIR$/orm/commit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="279" column="4" lean-forward="false" selection-start-line="279" selection-start-column="4" selection-end-line="279" selection-end-column="4" />
+        <state relative-caret-position="562">
+          <caret line="38" column="15" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ingester/git.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="44" column="83" lean-forward="true" selection-start-line="44" selection-start-column="83" selection-end-line="44" selection-end-column="83" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
