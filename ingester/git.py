@@ -40,7 +40,7 @@ class Git():
     \\"author_date\\"CAS_READER_PROP_DELIMITER: \\"%ad\\",CAS_READER_PROP_DELIMITER2\
     \\"author_date_unix_timestamp\\"CAS_READER_PROP_DELIMITER: \\"%at\\",CAS_READER_PROP_DELIMITER2\
     \\"commit_message\\"CAS_READER_PROP_DELIMITER: \\"%s%b\\"\
-    CAS_READER_STOPPRETTY \" --numstat --reverse --before=\"2017-10-1\" '
+    CAS_READER_STOPPRETTY \" --numstat --reverse  --before=\"2017-10-1\"'
 
     CLONE_CMD = 'git clone {!s} {!s}'     # git clone command w/o downloading src code
     PULL_CMD = 'git pull'      # git pull command
@@ -290,7 +290,8 @@ class Git():
 
         add_results = []
         del_results = []
-        resuluts_header = ['commit_hash', 'content', 'file_pre', 'file_new', 'line_num', 'author', 'time', 'bug_label']
+        addresuluts_header = ['commit_hash', 'content', 'file_pre', 'file_new', 'line_num', 'author', 'time', 'bug_introducing','commit_label']
+        delresuluts_header = ['commit_hash', 'content', 'file_pre', 'file_new', 'line_num', 'author', 'time', 'fix']
         # file to store results
         add_file = os.path.dirname(
             __file__) + self.DIFF_DIRECTORY + commit.repository_id + '/' + commit.repository_id + '_add.csv'
@@ -348,8 +349,9 @@ class Git():
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
                             bug_label = self.getBugLabel(file_new,line_num,buggy_lines)
+                            bug_introducing = self.getBugLabel(file_new,line_num,buggy_lines)
                             result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
-                                      commit.author_date, bug_label)
+                                      commit.author_date, bug_introducing, commit.contains_bug)
                             # bug all contain_bug became False
                             add_results.append(result)
 
@@ -372,13 +374,13 @@ class Git():
         with open(add_file, 'a') as file:
             f_csv = csv.writer(file)
             if not add_exist:
-                f_csv.writerow(resuluts_header)
+                f_csv.writerow(addresuluts_header)
             f_csv.writerows(add_results)
         del_exist = os.path.isfile(del_file)
         with open(del_file, 'a') as file:
             f_csv = csv.writer(file)
             if not del_exist:
-                f_csv.writerow(resuluts_header)
+                f_csv.writerow(delresuluts_header)
             f_csv.writerows(del_results)
 
 
