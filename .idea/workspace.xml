@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da86a242-f1f6-4085-8632-3d18c52ff179" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CAS_CodeRepoAnalyzer.iml" afterPath="$PROJECT_DIR$/.idea/CAS_CodeRepoAnalyzer.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/config.example.json" afterPath="" />
       <change beforePath="$PROJECT_DIR$/ingester/git.py" afterPath="$PROJECT_DIR$/ingester/git.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +36,8 @@
       <file leaf-file-name="git.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ingester/git.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="44" column="83" lean-forward="true" selection-start-line="44" selection-start-column="83" selection-end-line="44" selection-end-column="83" />
+            <state relative-caret-position="174">
+              <caret line="336" column="21" lean-forward="true" selection-start-line="336" selection-start-column="21" selection-end-line="336" selection-end-column="21" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -186,8 +182,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="95" />
-    <option name="y" value="235" />
+    <option name="x" value="-129" />
+    <option name="y" value="76" />
     <option name="width" value="1855" />
     <option name="height" value="1028" />
   </component>
@@ -417,7 +413,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="95" y="235" width="1855" height="1028" extended-state="0" />
+    <frame x="-129" y="76" width="1855" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -652,8 +648,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ingester/git.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="44" column="83" lean-forward="true" selection-start-line="44" selection-start-column="83" selection-end-line="44" selection-end-column="83" />
+        <state relative-caret-position="174">
+          <caret line="336" column="21" lean-forward="true" selection-start-line="336" selection-start-column="21" selection-end-line="336" selection-end-column="21" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
