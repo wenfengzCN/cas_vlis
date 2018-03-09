@@ -52,7 +52,7 @@ class Git():
 
     REPO_DIRECTORY = "/CASRepos/git/"        # directory in which to store repositories
     DIFF_DIRECTORY = "/CASRepos/diff/"       # directory in which to store diff information
-    LEAST_CHARACTER = 10
+    LEAST_CHARACTER = 0
 
 
     def getCommitStatsProperties( stats, commitFiles, devExperience, author, unixTimeStamp ):
@@ -347,7 +347,7 @@ class Git():
                         if not is_comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
-                            bug_label = self.getBugLabel(file_new,new_current,buggy_lines)
+                            bug_label = self.getBugLabel(file_new,line_num,buggy_lines)
                             result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
                                       commit.author_date, bug_label)
                             # bug all contain_bug became False
