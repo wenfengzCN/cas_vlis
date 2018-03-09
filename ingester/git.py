@@ -330,7 +330,7 @@ class Git():
             for chunk in chunks[1:]:
                 lines = chunk.split('\n')
                 # get the line number of each change
-                nums = re.match(r'^(\d+),\d+ \+(\d+),\d+ @@', lines[0])
+                nums = re.match(r'^(\d+),*\d* \+(\d+),*\d* @@', lines[0])
                 if hasattr(nums, 'group'):
                     pre_current = int(nums.group(1))
                     new_current = int(nums.group(2))
