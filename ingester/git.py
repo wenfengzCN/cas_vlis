@@ -46,13 +46,13 @@ class Git():
     PULL_CMD = 'git pull'      # git pull command
     RESET_CMD = 'git reset --hard FETCH_HEAD'
     CLEAN_CMD = 'git clean -df' # f for force clean, d for untracked directories
-    DIFF_CMD = "git diff {0}^ {1} --unified=0 "
+    DIFF_CMD = "git diff {0}^ {1} "
     DIFF_CMD_NAME = "git diff {0}^ {1} --name-only"
-    DIFF_CMD_INIT = "git diff {0} --unified=0"
+    DIFF_CMD_INIT = "git diff {0} "
 
     REPO_DIRECTORY = "/CASRepos/git/"        # directory in which to store repositories
     DIFF_DIRECTORY = "/CASRepos/diff/"       # directory in which to store diff information
-    LEAST_CHARACTER = 10
+    LEAST_CHARACTER = 0
 
 
     def getCommitStatsProperties( stats, commitFiles, devExperience, author, unixTimeStamp ):
@@ -308,13 +308,11 @@ class Git():
             chunks = region.split('@@ -')
             # get the previous file name and new file name
             file_pre = re.search('\-{3} (a/)?(.*)', chunks[0])
-
             if hasattr(file_pre, 'group'):
                 file_pre = file_pre.group(2)
             else:
                 continue
             file_new = re.search('\+{3} (b)/?(.*)', chunks[0])
-
             if hasattr(file_new, 'group'):
                 file_new = file_new.group(2)
             else:
@@ -322,16 +320,16 @@ class Git():
 
             # only focus on ".java" file
             file_info = file_new.split(".")
-
-            # get extentions
-            if len(file_info) > 1:
+            if len(file_info) > 1: # get extentions
                 file_ext = (file_info[1]).lower()
-                # ensure these source code file endings
-                if file_ext.upper() not in file_exts_to_include:
+                if file_ext.upper() not in file_exts_to_include:# ensure these source code file endings
                     continue
             else:
                 continue
-            line_m = '' # variable to process multiple lines； line_m
+            line_am = '' # variable to process added multiple lines
+            line_dm = '' # variable to process deleted multiple lines
+            first_segm = True # helper variable to process multiple lines condition
+            num_m = 0
             for chunk in chunks[1:]:
                 lines = chunk.split('\n')
                 # get the line number of each change
@@ -345,47 +343,63 @@ class Git():
                     is_add = line.startswith('+')  # this line add some code(missing in previous file but added to new file)
                     is_del = line.startswith('-')  # this line delete some code(appears in previous file but removed in new file)
                     if is_add:
-                        line_num = new_current
-                        new_current += 1
                         line = line.lstrip('+').strip().strip('\t').strip('\r')
                         # this line is a comment or not
                         comment = self.isComment(line)
                         if not comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
-                            oneLine = self.isOneLine(line)
-                            if oneLine:
-                                line_m += line
-                                bug_introducing = self.getBugLabel(file_new,line_num,buggy_lines)
-                                line_m = ''
-                                result = (commit.commit_hash, line_m, file_pre, file_new, line_num, commit.author_name,
+
+                            if self.isOneLine(line):
+                                line_am += line
+                                if first_segm:
+                                    num_m = new_current
+                                bug_introducing = self.getBugLabel(file_new,num_m,buggy_lines)
+
+                                result = (commit.commit_hash, line_am, file_pre, file_new, num_m, commit.author_name,
                                           commit.author_date, bug_introducing, commit.contains_bug)
                                 # bug all contain_bug became False
                                 add_results.append(result)
+                                line_am = ''  # reset
+                                first_segm = True  # reset
                             else:
-                                line_m += line
-
+                                if first_segm:
+                                    num_m = new_current
+                                line_am += line
+                                first_segm = False # set for the next segment, if exist.
+                            new_current += 1
                         else:
+                            new_current += 1
                             continue
                     elif is_del:
-                        line_num = pre_current
-                        pre_current += 1
                         line = line.lstrip('-').strip().strip('\t').strip('\r')  # remove some useless characters
                         comment = self.isComment(line)
                         if not comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # ignore blank lines
-                            oneLine = self.isOneLine(line)
-                            if oneLine:
-                                line_m += line
-                                result = (commit.commit_hash, line_m, file_pre, file_new, line_num, commit.author_name,
+
+                            if  self.isOneLine(line):
+                                line_dm += line
+                                if first_segm:
+                                    num_m = pre_current
+                                result = (commit.commit_hash, line_dm, file_pre, file_new, num_m, commit.author_name,
                                           commit.author_date, commit.fix)
-                                line_m = ''
                                 del_results.append(result)
+                                line_dm = ''
+                                first_segm = True
                             else:
-                                line_m += line
+                                if first_segm:
+                                    num_m = pre_current
+                                line_dm += line
+                                first_segm = False
+                            pre_current += 1
                         else:
+                            pre_current += 1
                             continue
+                    else:
+                        pre_current += 1
+                        new_current += 1
+                        continue
         add_exist = os.path.isfile(add_file)  # avoid write file header towice
         with open(add_file, 'a') as file:
             f_csv = csv.writer(file)
