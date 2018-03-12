@@ -273,6 +273,11 @@ class Git():
         else:
             return False
 
+    def isOneLine(self,line):
+        if line.endswith("{") or line.endswith("}") or line.endswith(";") or line.startswith("@"):
+            return True
+        else:
+            return False
 
     def parsingDiff(self, diff_info, commit):
         region_diff = {}
@@ -326,7 +331,7 @@ class Git():
                     continue
             else:
                 continue
-
+            line_m = '' # variable to process multiple lines； line_m
             for chunk in chunks[1:]:
                 lines = chunk.split('\n')
                 # get the line number of each change
@@ -344,16 +349,30 @@ class Git():
                         new_current += 1
                         line = line.lstrip('+').strip().strip('\t').strip('\r')
                         # this line is a comment or not
-                        is_comment = self.isComment(line)
-                        if not is_comment:
+                        comment = self.isComment(line)
+                        if not comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
+<<<<<<< HEAD
                             bug_label = self.getBugLabel(file_new,line_num,buggy_lines)
                             bug_introducing = self.getBugLabel(file_new,line_num,buggy_lines)
                             result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
                                       commit.author_date, bug_introducing, commit.contains_bug)
                             # bug all contain_bug became False
                             add_results.append(result)
+=======
+                            oneLine = self.isOneLine(line)
+                            if oneLine:
+                                line_m += line
+                                bug_introducing = self.getBugLabel(file_new,line_num,buggy_lines)
+                                line_m = ''
+                                result = (commit.commit_hash, line_m, file_pre, file_new, line_num, commit.author_name,
+                                          commit.author_date, bug_introducing, commit.contains_bug)
+                                # bug all contain_bug became False
+                                add_results.append(result)
+                            else:
+                                line_m += line
+>>>>>>> 9739377066bbeffbb839ab8b44d65591612bb39f
 
                         else:
                             continue
@@ -361,13 +380,19 @@ class Git():
                         line_num = pre_current
                         pre_current += 1
                         line = line.lstrip('-').strip().strip('\t').strip('\r')  # remove some useless characters
-                        is_comment = self.isComment(line)
-                        if not is_comment:
+                        comment = self.isComment(line)
+                        if not comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # ignore blank lines
-                            result = (commit.commit_hash, line, file_pre, file_new, line_num, commit.author_name,
-                                      commit.author_date, commit.fix)
-                            del_results.append(result)
+                            oneLine = self.isOneLine(line)
+                            if oneLine:
+                                line_m += line
+                                result = (commit.commit_hash, line_m, file_pre, file_new, line_num, commit.author_name,
+                                          commit.author_date, commit.fix)
+                                line_m = ''
+                                del_results.append(result)
+                            else:
+                                line_m += line
                         else:
                             continue
         add_exist = os.path.isfile(add_file)  # avoid write file header towice
