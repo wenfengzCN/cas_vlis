@@ -52,7 +52,7 @@ class Git():
 
     REPO_DIRECTORY = "/CASRepos/git/"        # directory in which to store repositories
     DIFF_DIRECTORY = "/CASRepos/diff/"       # directory in which to store diff information
-    LEAST_CHARACTER = 0
+    LEAST_CHARACTE:R = 0
 
 
     def getCommitStatsProperties( stats, commitFiles, devExperience, author, unixTimeStamp ):
