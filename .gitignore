@@ -1,5 +1,6 @@
 *.py[cod]
 nohup.out
+.idea/ workspace.xml
 # git & diff
 ingester/CASRepos/diff/
 ingester/CASRepos/git
