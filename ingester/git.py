@@ -421,9 +421,6 @@ class Git():
             f_csv.writerows(del_results)
 
 
-
-
-
     def diff(self,repoId):
         repo_dir = os.chdir(os.path.dirname(__file__) + self.REPO_DIRECTORY + repoId)
         diff_dir = os.path.dirname(__file__)+ self.DIFF_DIRECTORY + repoId

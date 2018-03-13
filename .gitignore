@@ -4,6 +4,9 @@
 ingester/CASRepos/diff/
 ingester/CASRepos/git
 
+# test
+test/
+
 # C extensions
 *.so
 
