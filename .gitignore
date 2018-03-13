@@ -6,6 +6,7 @@ ingester/CASRepos/git
 
 # test
 test/
+tech_test.py
 
 # C extensions
 *.so
