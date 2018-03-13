@@ -1,5 +1,5 @@
 *.py[cod]
-
+nohup.out
 # git & diff
 ingester/CASRepos/diff/
 ingester/CASRepos/git
