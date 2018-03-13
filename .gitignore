@@ -3,7 +3,7 @@ nohup.out
 .idea/ workspace.xml
 # git & diff
 ingester/CASRepos/diff/
-ingester/CASRepos/git
+ingester/CASRepos/git/
 
 # test
 test/
