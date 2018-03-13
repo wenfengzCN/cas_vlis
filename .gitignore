@@ -1,8 +1,12 @@
 *.py[cod]
-
+nohup.out
 # git & diff
 ingester/CASRepos/diff/
 ingester/CASRepos/git
+
+# test
+test/
+tech_test.py
 
 # C extensions
 *.so

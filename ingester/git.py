@@ -339,6 +339,8 @@ class Git():
                     new_current = int(nums.group(2))
                 else:
                     continue
+                bug_introducing = False
+                fix = False
                 for line in lines[1:]:
                     is_add = line.startswith('+')  # this line add some code(missing in previous file but added to new file)
                     is_del = line.startswith('-')  # this line delete some code(appears in previous file but removed in new file)
@@ -349,12 +351,13 @@ class Git():
                         if not comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
-
+                            bug_flag = self.getBugLabel(file_new, new_current, buggy_lines)
+                            if bug_flag == True:
+                                bug_introducing = True
                             if self.isOneLine(line):
                                 line_am += line
                                 if first_segm:
                                     num_m = new_current
-                                bug_introducing = self.getBugLabel(file_new,num_m,buggy_lines)
 
                                 result = (commit.commit_hash, line_am, file_pre, file_new, num_m, commit.author_name,
                                           commit.author_date, bug_introducing, commit.contains_bug)
@@ -362,6 +365,7 @@ class Git():
                                 add_results.append(result)
                                 line_am = ''  # reset
                                 first_segm = True  # reset
+                                bug_introducing = False # reset
                             else:
                                 if first_segm:
                                     num_m = new_current
@@ -377,16 +381,19 @@ class Git():
                         if not comment:
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # ignore blank lines
-
+                            fix_flag = commit.fix
+                            if fix_flag == True:
+                                fix = True
                             if  self.isOneLine(line):
                                 line_dm += line
                                 if first_segm:
                                     num_m = pre_current
                                 result = (commit.commit_hash, line_dm, file_pre, file_new, num_m, commit.author_name,
-                                          commit.author_date, commit.fix)
+                                          commit.author_date, fix)
                                 del_results.append(result)
                                 line_dm = ''
                                 first_segm = True
+                                fix = False # reset
                             else:
                                 if first_segm:
                                     num_m = pre_current
@@ -412,9 +419,6 @@ class Git():
             if not del_exist:
                 f_csv.writerow(delresuluts_header)
             f_csv.writerows(del_results)
-
-
-
 
 
     def diff(self,repoId):
