@@ -352,7 +352,7 @@ class Git():
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # escape those line without enought information
                             bug_flag = self.getBugLabel(file_new, new_current, buggy_lines)
-                            if bug_flag == True:
+                            if bug_flag:
                                 bug_introducing = True
                             if self.isOneLine(line):
                                 line_am += line
@@ -382,9 +382,9 @@ class Git():
                             if len(line) < self.LEAST_CHARACTER:
                                 continue  # ignore blank lines
                             fix_flag = commit.fix
-                            if fix_flag == True:
+                            if fix_flag=='True':
                                 fix = True
-                            if  self.isOneLine(line):
+                            if self.isOneLine(line):
                                 line_dm += line
                                 if first_segm:
                                     num_m = pre_current
