@@ -52,7 +52,8 @@ class Git():
 
     REPO_DIRECTORY = "/CASRepos/git/"        # directory in which to store repositories
     DIFF_DIRECTORY = "/CASRepos/diff/"       # directory in which to store diff information
-    LEAST_CHARACTER = 0
+    LEAST_CHARACTER = 10
+    MAX_LINE = 10000                         # if modified line of one commit is more then MAX_LINE, then ommit this commit 
 
 
     def getCommitStatsProperties( stats, commitFiles, devExperience, author, unixTimeStamp ):
@@ -280,6 +281,8 @@ class Git():
             return False
 
     def parsingDiff(self, diff_info, commit):
+        if len(diff_info.split('\n')) > self.MAX_LINE:
+            return []
         region_diff = {}
         # only link code source files as any type of README, etc typically have HUGE changes and reduces
         # the performance to unacceptable levels. it's very hard to blacklist everything; much easier just to whitelist
