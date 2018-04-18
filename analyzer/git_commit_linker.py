@@ -76,10 +76,7 @@ class GitCommitLinker:
     bug_introducing_changes = self.gitAnnotate(region_chunks, commit)
     return bug_introducing_changes
 
-  def StoreLineInfo(self):
-    # to load line information to add.csv del.csv
-    pass
-
+ 
   def _getModifiedRegionsOnly(self, diff, files_modified):
     """
     returns a dict of file -> list of line numbers modified. helper function for getModifiedRegions

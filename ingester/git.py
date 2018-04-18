@@ -358,7 +358,7 @@ class Git():
                             if bug_flag:
                                 bug_introducing = True
                             if self.isOneLine(line):
-                                line_am += line
+                                line_am += ' ' + line
                                 if first_segm:
                                     num_m = new_current
 
@@ -388,7 +388,7 @@ class Git():
                             if fix_flag=='True':
                                 fix = True
                             if self.isOneLine(line):
-                                line_dm += line
+                                line_dm += ' ' + line
                                 if first_segm:
                                     num_m = pre_current
                                 result = (commit.commit_hash, line_dm, file_pre, file_new, num_m, commit.author_name,
@@ -447,7 +447,6 @@ class Git():
 
                 self.parsingDiff(diff_info,  commit)
                 commit.diffed = True
-                #session.commit() # update diffed
             except:
                 try:
                     diff_info = (subprocess.check_output(self.DIFF_CMD_INIT.format(commit.commit_hash), \
