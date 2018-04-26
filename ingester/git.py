@@ -274,8 +274,12 @@ class Git():
         else:
             return False
 
+
     def isOneLine(self,line):
-        if line.endswith("{") or line.endswith("}") or line.endswith(";") or line.startswith("@"):
+        # line.find("class "): a line to define a class
+        # line.find("throws “）： a line to define exception
+        if line.endswith("{") or line.endswith("}") or line.endswith(";") or line.startswith("@") or\
+                line.endswith(")") or line.find("class ") != -1 or line.find("throws ") != -1:
             return True
         else:
             return False
@@ -438,6 +442,7 @@ class Git():
         session = Session()
         commits = (session.query(Commit).filter((Commit.repository_id==repoId)&(Commit.diffed==False))
                    .order_by( Commit.author_date_unix_timestamp.desc()).all())
+
         # diff
         logging.info('Starting get/parsing diff information.')
         for commit in commits:
