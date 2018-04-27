@@ -275,7 +275,14 @@ class Git():
             return False
 
 
-    def isOneLine(self,line):
+    def isOneLine(self,line,next_line,mode):
+        # avoid combining a original line between tow modified lines
+        if next_line == 'EndLine_DELIMITER':
+            return True
+        if mode =='+' and next_line.startswith("+") == False:
+            return True
+        if mode == '-' and next_line.startswith('-') == False:
+            return True
         # line.find("class "): a line to define a class
         # line.find("throws “）： a line to define exception
         if line.endswith("{") or line.endswith("}") or line.endswith(";") or line.startswith("@") or\
@@ -348,7 +355,8 @@ class Git():
                     continue
                 bug_introducing = False
                 fix = False
-                for line in lines[1:]:
+                lines = lines[1:]
+                for count, line in enumerate(lines):
                     is_add = line.startswith('+')  # this line add some code(missing in previous file but added to new file)
                     is_del = line.startswith('-')  # this line delete some code(appears in previous file but removed in new file)
                     if is_add:
@@ -357,12 +365,17 @@ class Git():
                         comment = self.isComment(line)
                         if not comment:
                             if len(line) < self.LEAST_CHARACTER:
+                                new_current += 1
                                 continue  # escape those line without enought information
                             bug_flag = self.getBugLabel(file_new, new_current, buggy_lines)
                             if bug_flag:
                                 bug_introducing = True
-                            if self.isOneLine(line):
-                                line_am += ' ' + line
+                            if count < len(lines) -1:
+                                next_line = lines[count+1]
+                            else:
+                                next_line = 'EndLine_DELIMITER'
+                            if self.isOneLine(line, next_line,'+'):
+                                line_am += ' ' + line # modified line in add.csv
                                 if first_segm:
                                     num_m = new_current
 
@@ -387,11 +400,16 @@ class Git():
                         comment = self.isComment(line)
                         if not comment:
                             if len(line) < self.LEAST_CHARACTER:
+                                pre_current += 1
                                 continue  # ignore blank lines
                             fix_flag = commit.fix
                             if fix_flag=='True':
                                 fix = True
-                            if self.isOneLine(line):
+                            if count < len(lines) -1:
+                                next_line = lines[count+1]
+                            else:
+                                next_line = 'EndLine_DELIMITER'
+                            if self.isOneLine(line,next_line,'-'):
                                 line_dm += ' ' + line
                                 if first_segm:
                                     num_m = pre_current
