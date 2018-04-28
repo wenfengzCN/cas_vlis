@@ -49,7 +49,7 @@ CASAnalyzer.log
 
 # CAS Reader
 ingester/CASReader.log
-ingester/CASRepos/git/*
+ingester/CASRepos/git/
 
 analyzer/datasets/*
 
