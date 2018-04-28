@@ -104,7 +104,7 @@ pip3 install rpy2
 ```
 
 ###Additional Pip Packages
-Install the following packages by doing `pip install `  and then the package
+Install the following packages by doing `pip3 install `  and then the package
 name. Make sure you are using python3, such as using a virtualenv if using Ubuntu.
 
 * SQL Alchemy (sqlalchemy)
@@ -116,6 +116,8 @@ To install the MonthDelta package, simply do: `pip install http://pypi.python.or
 
 ###First-Time Database Setup
 Set up the database for the first time by running `python script.py initDb`
+
+
 ##mkdir
 make dir 
 ingester/CASRepos/git
