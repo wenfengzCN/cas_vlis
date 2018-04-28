@@ -1,3 +1,4 @@
+[TOC]
 CAS_CodeRepoAnalyzer
 ====================
 
@@ -112,7 +113,7 @@ name. Make sure you are using python3, such as using a virtualenv if using Ubunt
 * requests (requests)
 * python-dateutil (python-dateutil)
 
-To install the MonthDelta package, simply do: `pip install http://pypi.python.org/packages/source/M/MonthDelta/MonthDelta-1.0b.tar.bz2`
+To install the MonthDelta package, simply do: `pip333333333333333333333333333333333 install http://pypi.python.org/packages/source/M/MonthDelta/MonthDelta-1.0b.tar.bz2`
 
 ###First-Time Database Setup
 Set up the database for the first time by running `python script.py initDb`
@@ -120,9 +121,12 @@ Set up the database for the first time by running `python script.py initDb`
 
 ##mkdir
 make dir 
+```
 ingester/CASRepos/git
 ingester/CASRepos/diff
 analyzer/datasets
 analyzer/datasets/model
+```
+
 ##Usage
 In a terminal, type `nohup python script.py & ' to start the code repo analyzer and run it in the background.
