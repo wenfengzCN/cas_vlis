@@ -49,18 +49,10 @@ you must uninstall the current python-virtualenv:
 sudo apt-get remove python-virtualenv
 ```
 
-Next, install the latest easy_install:
 
+Next, install  the virtualenv:
 ```
-wget http://peak.telecommunity.com/dist/ez_setup.py
-sudo python ez_setup.py
-```
-
-Next, install pip and the virtualenv:
-
-```
-sudo easy_install pip
-sudo pip install virtualenv
+sudo pip3 install virtualenv
 virtualenv --no-site-packages --distribute -p /usr/bin/python3.3 ~/.virtualenvs/pywork3
 ```
 
@@ -86,7 +78,7 @@ source /path/to/new/virtual/environemnt/bin/activate
 Type `deactiviate` to exit the virtual env
 
 ###Installing rpy2
-* Assumes you are working on Ubuntu 12.04 and python 3.3
+* Assumes you are working on Ubuntu 16.04 and python 3.3
 
 Getting rpy2 to work can be a bit tricky. First, make sure R is installed. To do this, first
 get the repository SSL key and import it to apt by doing
@@ -96,7 +88,7 @@ get the repository SSL key and import it to apt by doing
   gpg -a --export E084DAB9 | sudo apt-key add -
   ```
 
-Then, Edit the list of sources `gksudo gedit /etc/apt/sources.list` and add the following repo at the bottom:`deb http://cran.ma.imperial.ac.uk/bin/linux/ubuntu precise/`
+Then, Edit the list of sources `gksudo gedit /etc/apt/sources.list` and add the following repo at the bottom:`deb [arch=i386,amd64] https://cran.rstudio.com/bin/linux/ubuntu xenial/`
 
 Finally, we can install R by running the following commands:
 
@@ -108,7 +100,7 @@ Finally, we can install R by running the following commands:
 Now we are ready to install rpy2. Make sure python version 3 or greater is in use (3.2 is not compatibale, however), such as by using a virtualenv and run
 
 ```
-pip install rpy2
+pip3 install rpy2
 ```
 
 ###Additional Pip Packages
@@ -124,6 +116,11 @@ To install the MonthDelta package, simply do: `pip install http://pypi.python.or
 
 ###First-Time Database Setup
 Set up the database for the first time by running `python script.py initDb`
-
+##mkdir
+make dir 
+ingester/CASRepos/git
+ingester/CASRepos/diff
+analyzer/datasets
+analyzer/datasets/model
 ##Usage
 In a terminal, type `nohup python script.py & ' to start the code repo analyzer and run it in the background.
