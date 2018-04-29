@@ -1,4 +1,3 @@
-[TOC]
 CAS_CodeRepoAnalyzer
 ====================
 
